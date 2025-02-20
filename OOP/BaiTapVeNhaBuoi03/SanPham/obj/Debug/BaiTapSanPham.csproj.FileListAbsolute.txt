@@ -1,0 +1,7 @@
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\bin\Debug\SanPham.exe.config
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\bin\Debug\SanPham.exe
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\bin\Debug\SanPham.pdb
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\obj\Debug\BaiTapSanPham.csproj.AssemblyReference.cache
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\obj\Debug\BaiTapSanPham.csproj.CoreCompileInputs.cache
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\obj\Debug\SanPham.exe
+E:\Semester-4\OOP\BaiTapVeNhaBuoi03\SanPham\obj\Debug\SanPham.pdb
