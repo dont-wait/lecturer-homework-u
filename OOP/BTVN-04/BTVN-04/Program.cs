@@ -1,5 +1,10 @@
 ﻿using BTVN_04;
-
-HoGiaDinh hoGiaDinh = new HoGiaDinh();
-hoGiaDinh.NhapThongTinHoGiaDinh();
-hoGiaDinh.XuatThongTinHoGiaDinh();
+class Program
+{
+    public static void Main(String[] args)
+    {
+        QuanLiHoGiaDinh quanLiHoGiaDinh = new QuanLiHoGiaDinh();
+        Helper helper = new Helper();
+        helper.HandleMenu(quanLiHoGiaDinh);
+    }
+}

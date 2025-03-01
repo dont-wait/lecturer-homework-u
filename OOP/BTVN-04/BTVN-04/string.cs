@@ -1,6 +1,6 @@
 namespace BTVN_04;
 
-public enum LoaiHoGiaDinhEnum
+public enum @string
 {
     A,
     B,

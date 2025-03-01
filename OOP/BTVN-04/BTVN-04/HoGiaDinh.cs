@@ -1,4 +1,4 @@
-namespace BTVN_04;
+﻿namespace BTVN_04;
 
 public class HoGiaDinh
 {
@@ -6,44 +6,43 @@ public class HoGiaDinh
     private string tenChuHo;
     private long soDienDauKi;
     private long soDienCuoiKi;
-    private LoaiHoGiaDinhEnum loaiHoGiaDinh;
+    private string loaiHoGiaDinh;
     public static long giaDienQuyDinh = 3000;
 
     public HoGiaDinh()
     {
-        maHo = "";
-        tenChuHo = "";
-        soDienDauKi = 0;
-        soDienCuoiKi = 0;
-        loaiHoGiaDinh = LoaiHoGiaDinhEnum.C;
+
     }
 
-    public HoGiaDinh(string maHo, string tenChuHo, long soDienDauKi, long soDienCuoiKi, LoaiHoGiaDinhEnum loaiHoGiaDinh)
+    public HoGiaDinh(string maHo, string tenChuHo, long soDienDauKi, long soDienCuoiKi, string loaiHoGiaDinh)
     {
         MaHo = maHo;
         TenChuHo = tenChuHo;
         SoDienDauKi = soDienDauKi;
         SoDienCuoiKi = soDienCuoiKi;
-        LoaiHoGiaDinhEnum = loaiHoGiaDinh;
+        LoaiHoGiaDinh = loaiHoGiaDinh;
     }
 
-    public LoaiHoGiaDinhEnum LoaiHoGiaDinhEnum
+    
+
+    public HoGiaDinh(HoGiaDinh hoGiaDinh)
+    {
+        MaHo = hoGiaDinh.maHo;
+        TenChuHo = hoGiaDinh.tenChuHo;
+        SoDienDauKi = hoGiaDinh.soDienDauKi;
+        SoDienCuoiKi = hoGiaDinh.soDienCuoiKi;
+        LoaiHoGiaDinh = hoGiaDinh.loaiHoGiaDinh;
+    }
+
+    public string LoaiHoGiaDinh
     {
         get { return loaiHoGiaDinh; }
         set
         {
-            if(value.ToString() != "A" || value.ToString() != "B")
-                throw new Exception("LoaiHoGiaDinh enum is not valid");
+            if (value != "A" && value != "B" && value != "C")
+                throw new Exception("Invalid LoaiHoGiaDinh");
+            loaiHoGiaDinh = value;
         }
-    }
-
-    public HoGiaDinh(HoGiaDinh hoGiaDinh)
-    {
-        maHo = hoGiaDinh.maHo;
-        tenChuHo = hoGiaDinh.tenChuHo;
-        soDienDauKi = hoGiaDinh.soDienDauKi;
-        soDienCuoiKi = hoGiaDinh.soDienCuoiKi;
-        loaiHoGiaDinh = hoGiaDinh.loaiHoGiaDinh;
     }
 
     public string MaHo
@@ -51,7 +50,7 @@ public class HoGiaDinh
         get => maHo;
         set
         {
-            if(String.IsNullOrEmpty(value) || String.IsNullOrWhiteSpace(value))
+            if(string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 throw new Exception("MaHo cant be empty!");
             maHo = value;
         }
@@ -62,9 +61,9 @@ public class HoGiaDinh
         get => tenChuHo;
         set
         {
-            if(String.IsNullOrEmpty(value) || String.IsNullOrWhiteSpace(value))
+            if(string.IsNullOrEmpty(value) || string.IsNullOrWhiteSpace(value))
                 throw new Exception("TenChuHo cant be empty!");
-            TenChuHo = value;
+            tenChuHo = value;
         }
     }
 
@@ -75,6 +74,7 @@ public class HoGiaDinh
         {
             if(value < 0)
                 throw new Exception("SoDienDauKi cant be negative!");       
+            soDienDauKi = value;
         }
     }
 
@@ -83,12 +83,13 @@ public class HoGiaDinh
         get => soDienCuoiKi;
         set
         {
-            if (value < 0 || value >= soDienDauKi)
+            if (value < 0 || value <= soDienDauKi)
                 throw new Exception("SoDienCuoiKi is invalid!");
+            soDienCuoiKi = value;
         }
     }
 
-    public long TinhTienDienThucTe() => soDienCuoiKi - soDienDauKi;
+    public long TinhSoDienTieuThuThucTe() => soDienCuoiKi - soDienDauKi;
 
     public int TinhTienDienUuTien()
     {
@@ -99,32 +100,90 @@ public class HoGiaDinh
         return 0;
     }
 
-    public long TinhTienDien() => (TinhTienDienThucTe() - TinhTienDienUuTien()) * giaDienQuyDinh;
+    public long TinhTienDien() => (TinhSoDienTieuThuThucTe() - TinhTienDienUuTien()) * giaDienQuyDinh;
 
     public void NhapThongTinHoGiaDinh()
     {
         Console.InputEncoding = System.Text.Encoding.UTF8;
-        
-        Console.Write("Input ma ho: ");
-        maHo = Console.ReadLine();
-        
-        Console.Write("Input ten chu ho: ");
-        tenChuHo = Console.ReadLine();
-        
-        Console.Write("Input a so dien dau ki: ");
-        soDienDauKi = long.Parse(Console.ReadLine());
-        
-        
-        Console.Write("Input a so dien cuoi ki: ");
-        soDienDauKi = long.Parse(Console.ReadLine());
-        
-        Console.Write("Input a loai ho: ");
-        string input = Console.ReadLine();
-        LoaiHoGiaDinhEnum loaiHoGiaDinhEnum = (LoaiHoGiaDinhEnum)Enum.Parse(typeof(LoaiHoGiaDinhEnum), input);
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+        do
+        {
+            try
+            {
+                Console.Write("Nhập Mã hộ: ");
+                MaHo = Console.ReadLine();
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        } while (true);
+
+        do
+        {
+            try
+            {
+                Console.Write("Nhập tên chủ hộ: ");
+                TenChuHo = Console.ReadLine();
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        } while (true);
+
+        do
+        {
+            try
+            {
+                Console.Write("Nhập số điện đầu kì: ");
+                SoDienDauKi = long.Parse(Console.ReadLine());
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        } while (true);
+
+        do
+        {
+            try
+            {
+                Console.Write("Nhập số điện cuối kì: ");
+                SoDienCuoiKi = long.Parse(Console.ReadLine());
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        } while (true);
+
+        do
+        {
+            try
+            {
+                Console.Write("Nhập loại hộ gia đình: ");
+                LoaiHoGiaDinh = Console.ReadLine();
+                break;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        } while (true);
     }
+
+
+
 
     public void XuatThongTinHoGiaDinh()
     {
-        Console.WriteLine($"{maHo} | {tenChuHo} | {soDienDauKi} | {soDienCuoiKi} | {loaiHoGiaDinh}");
+        Console.OutputEncoding = System.Text.Encoding.UTF8;
+        Console.WriteLine($"{maHo, -10}| {tenChuHo, 20}| {soDienDauKi, 10}| {soDienCuoiKi, 10} | {loaiHoGiaDinh, 5}");
     }
 }
