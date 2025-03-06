@@ -1,8 +1,11 @@
-﻿public class Program
+﻿using BTTL_05;
+
+public class Program
 {
     static void Main(String[] args)
     {
-        Console.WriteLine("Hello World!");
+        Menu menu = new Menu();
+        menu.PlayWithMenu();
     }
     
 }

@@ -41,4 +41,23 @@ public class NhanVien
     {
         return 1200 * heSoLuong + TinhHeSoThiDua();
     }
+
+    public virtual void InputInfo()
+    {
+        Console.Write("Input MaNhanVien: ");
+        maNhanVien = Console.ReadLine();
+        Console.Write("Input TenNhanVien: ");
+        tenNhanVien = Console.ReadLine();
+        Console.Write("Input HeSoLuong: ");
+        heSoLuong = Double.Parse(Console.ReadLine());
+        Console.Write("Input PhongBan: ");
+        phongBan = Console.ReadLine();
+        Console.Write("Input SoNgayLamViec: ");
+        soNgayLamViec = int.Parse(Console.ReadLine());
+    }
+    
+    public virtual void ShowInfo()
+    {
+        Console.WriteLine($"|{maNhanVien, -5}| {tenNhanVien, 30}| {heSoLuong, 5}| {phongBan, 10}| {soNgayLamViec, 5}|");
+    }
 }
