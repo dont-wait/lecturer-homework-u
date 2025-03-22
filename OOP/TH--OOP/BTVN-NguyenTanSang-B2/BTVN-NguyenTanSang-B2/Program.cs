@@ -1,9 +1,35 @@
 ﻿using System;
+using BTVN_NguyenTanSang_B2.Bai6.dao;
+using BTVN_NguyenTanSang_B2.Bai6.entity;
 using BTVN_NguyenTanSang_B2.dao;
 
 class Program
 {
-    static void Main(string[] args)
+    static void TestBai6()
+    {
+        HoaDon hoaDon = new HoaDon("HD01", "Hodden Caufield", null);
+
+        ChiTietBanHang sp1 = new ChiTietBanHang("SP0001", "Laptop ASUS", 20000, 2);
+        ChiTietBanHang sp2 = new ChiTietBanHang("SP0002", "Laptop HP", 18000, 1);
+        ChiTietBanHang sp3 = new ChiTietBanHang("SP0003", "Laptop Dell", 22000, 3);
+
+        hoaDon.ThemChiTiet(sp1);
+        hoaDon.ThemChiTiet(sp2);
+        hoaDon.ThemChiTiet(sp3);
+
+        Console.WriteLine("Tong tien hoa don: " + hoaDon.TinhTongTien());
+
+        Console.WriteLine("\nThong tin hoa don truoc sap xep:");
+        hoaDon.xuatHoaDon();
+
+        hoaDon.SapXepChiTietBanHang();
+        Console.WriteLine("\nThong tin hoa don sau sap xep:");
+        hoaDon.xuatHoaDon();
+
+        Console.WriteLine("\nSan pham co gia tri lon nhat: " + hoaDon.tienLonNhat());
+
+    }
+    static void TestBai5()
     {
         ListNhanVien listNhanVien = new ListNhanVien();
 
@@ -32,5 +58,10 @@ class Program
 
         Console.WriteLine("\nTEST 8: Xuat danh sach nhan vien co he so luong > 4.34 va thuoc phong Tai Vu");
         listNhanVien.XuatDanhSachNhanVienCoHSLonHon4_34VaOPhongTaiVu();
+    }
+    static void Main(string[] args)
+    {
+        //TestBai5();
+        TestBai6();
     }
 }
